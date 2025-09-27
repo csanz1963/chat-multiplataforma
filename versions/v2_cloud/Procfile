@@ -1,1 +1,1 @@
-web: python app_unified_fixed.py
+web: python main.py
