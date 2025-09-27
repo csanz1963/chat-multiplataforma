@@ -141,12 +141,15 @@ class ChatServerCloud:
             await self.unregister(websocket)
     
     async def start_server(self):
-        logger.info(f"Iniciando servidor Cloud en {self.host}:{self.port}")
+        """Iniciar servidor adaptado para Render"""
+        # Render asigna puertos dinámicos
+        port = int(os.environ.get('PORT', 8765))
+
+        logger.info(f"🚀 Iniciando servidor en puerto {port}")
         
-        port = int(os.environ.get('PORT', self.port))
-        
+                
         async with websockets.serve(self.handler, self.host, port):
-            logger.info(f"Servidor Cloud activo en puerto {port}")
+            logger.info(f"✅ Servidor activo en puerto {port}")
             await asyncio.Future()
 
 def main():
